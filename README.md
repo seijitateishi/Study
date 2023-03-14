@@ -11,3 +11,5 @@ post com http://localhost:8080/wallets/deposit?id=y&value=x
 
 retirar x na conta y:
 post com http://localhost:8080/wallets/withdraw?id=y&value=x
+
+API de Task manager feito apenas para reforcar o que aprendi no api de wallet.
