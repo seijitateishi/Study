@@ -10,7 +10,4 @@ function padrao(){
     for(a=i;a<=f;a+=inter){
         res.innerText+=a+' \u{1F449}'
     }
-        
-
-
 }
