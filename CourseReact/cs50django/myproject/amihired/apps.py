@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class Project0Config(AppConfig):
+class AmihiredConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'project0'
+    name = 'amihired'
