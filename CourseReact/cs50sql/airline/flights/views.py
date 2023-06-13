@@ -1,10 +1,11 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.urls import reverse
 
 # Create your views here.
 
-from django.http import HttpResponse
 
-from .models import Flight
+from .models import Flight, Passenger, Airport
 
 def index(request):
     return render(request, "flights/index.html", {
@@ -14,5 +15,14 @@ def index(request):
 def flight(request, flight_id):
     flight = Flight.objects.get(pk=flight_id)
     return render(request, "flights/flight.html", {
-        "flight": flight
+        "flight": flight,
+        "passengers": flight.passengers.all(),
+        "non_passengers": Passenger.objects.exclude(flights=flight).all()
     })
+
+def book(request, flight_id):
+    if request.method == "POST":
+        flight = Flight.objects.get(pk=flight_id)
+        passenger = Passenger.objects.get(pk=int(request.POST["passenger"]))
+        passenger.flights.add(flight)
+        return HttpResponse(reverse("flights:flight", args=(flight.id,)))
